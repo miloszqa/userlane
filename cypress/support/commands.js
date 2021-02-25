@@ -23,3 +23,20 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+import 'cypress-file-upload';
+
+Cypress.Commands.add('submitApplication', (canddidate) => {
+    cy.get("input[data-qa='input-resume']")
+      .attachFile('example.pdf');
+    cy.get('input[name=name]')
+      .type(candidate.name)
+    cy.get('input[name=email]')
+      .type(candidate.email)
+    cy.get('input[name=phone]')
+      .type(candidate.phone)
+    cy.get('input[placeholder="Type your response]')
+      .type(candidate.salary)
+    cy.get('[type="checkbox"]')
+      .check();
+  })
